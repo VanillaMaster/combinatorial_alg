@@ -35,9 +35,24 @@ function calc() {
 
   while (check) {
     let avaleble = exclude(adjacency[path[path.length-1]],used);
+    let tmp = path.slice(0,path.length-2);
     console.log(`path: ${path}`);
-    if (haveSame(adjacency[path[path.length-1]],path)) {
+    console.log(tmp);
+    if (haveSame(adjacency[path[path.length-1]],tmp) && path.length>=3) {
+      console.log(haveSame(adjacency[path[path.length-1]],tmp));
       return path;
+    }
+    if (path[path.length-1] == 10 && false) {
+      console.log(adjacency[path[path.length-1]]);
+      console.log(path.splice(0,path.length-1));
+      console.log(haveSame(adjacency[path[path.length-1]],path.splice().splice(-1,1)));
+      //let result = false
+      adjacency[path[path.length-1]].forEach((item, i) => {
+        if (path.splice().splice(-1,1).includes(item)){
+          console.log(true);
+        }
+      });
+      //return result;
     }
     if (avaleble.length>0) {
       path.push(avaleble[0]);
@@ -59,7 +74,7 @@ function haveSame(searchFrom, searchIn) {
   let result = false
   searchFrom.forEach((item, i) => {
     if (searchIn.includes(item)){
-      result = true;
+      result = item;
     }
   });
   return result;
